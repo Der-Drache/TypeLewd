@@ -1,5 +1,6 @@
-import { BaseBeing } from '../beings/BaseBeing';
 import { IStep } from './IStep';
+import { BaseBeing } from '../beings/BaseBeing';
+import { IPenetrable, IPenetrator } from '../materials';
 import { BaseAccessory } from '../accessories/BaseAccessory';
 import { BaseBodyPart } from '../bodyParts';
 import { pluralizer } from '../utils';
@@ -9,8 +10,8 @@ export class Penetration implements IStep {
 
   private _taker: BaseBeing;
   private _taken: BaseBeing;
-  private _hole: BaseBodyPart;
-  private _penetrator: BaseBodyPart;
+  private _hole: IPenetrable;
+  private _penetrator: IPenetrator;
   private _accessory: BaseAccessory;
   private _failed = false;
   private _wait = 0;
@@ -79,31 +80,21 @@ export class Penetration implements IStep {
     return this;
   }
 
-  hole(): BaseBodyPart {
+  hole(): IPenetrable {
     return this._hole;
   }
 
-  setHole(hole: BaseBodyPart): this {
+  setHole(hole: IPenetrable): this {
     this._hole = hole;
-
-    if (!hole.isPenetrable()) {
-      this.setFailed(true);
-    }
-
     return this;
   }
 
-  penetrator(): BaseBodyPart {
+  penetrator(): IPenetrator {
     return this._penetrator;
   }
 
-  setPenetrator(penetrator: BaseBodyPart): this {
+  setPenetrator(penetrator: IPenetrator): this {
     this._penetrator = penetrator;
-
-    if (!penetrator.isPenetrator()) {
-      this.setFailed(true);
-    }
-
     return this;
   }
 

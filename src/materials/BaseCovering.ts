@@ -1,5 +1,5 @@
 import { BaseMaterial } from './BaseMaterial';
-import { BaseBodyPart } from './bodyParts/BaseBodyPart';
+import { BaseBodyPart } from '../bodyParts/BaseBodyPart';
 
 export class BaseCovering extends BaseMaterial {
 
@@ -20,14 +20,14 @@ export class BaseCovering extends BaseMaterial {
     return this;
   }
 
-  swipeOff(bodyPart: BaseBodyPart): this {
+  takeOff(bodyPart: BaseBodyPart): this {
     this._covereds = this._covereds.filter(c => !c.compare(bodyPart));
     bodyPart.removeCovering(this);
     return this;
   }
 
-  swipesOff(bodyParts: BaseBodyPart[]): this {
-    bodyParts.forEach(bodyPart => this.swipeOff(bodyPart));
+  takesOff(bodyParts: BaseBodyPart[]): this {
+    bodyParts.forEach(bodyPart => this.takeOff(bodyPart));
     return this;
   }
 

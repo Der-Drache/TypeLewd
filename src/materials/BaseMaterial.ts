@@ -1,4 +1,4 @@
-import { SuperBase } from './SuperBase';
+import { SuperBase } from '../SuperBase';
 
 export class BaseMaterial extends SuperBase {
 

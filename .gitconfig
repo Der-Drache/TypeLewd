@@ -1,6 +1,0 @@
-[core]
-  sshCommand "ssh -o IdentitiesOnly=yes -i ~/.ssh/id_rsa_der_drache -F /dev/null"
-[user]
-	name = Der Drache
-	email = zougui.nsfw@outlook.fr
-	username = Der Drache

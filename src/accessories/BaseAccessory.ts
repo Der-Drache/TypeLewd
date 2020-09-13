@@ -1,7 +1,7 @@
-import { BaseMaterial } from '../BaseMaterial';
+import { Solid } from '../materials';
 import { BaseBodyPart } from '../bodyParts/BaseBodyPart';
 
-export class BaseAccessory extends BaseMaterial {
+export class BaseAccessory extends Solid {
 
   private _applyableBodyParts: BaseBodyPart[] = [];
   private _appliedTo: BaseBodyPart[] = [];

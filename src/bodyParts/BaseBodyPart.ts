@@ -1,18 +1,16 @@
-import { BaseMaterial } from '../BaseMaterial';
-import { BaseCovering } from '../BaseCovering';
+import { Solid } from '../materials';
+import { BaseCovering } from '../materials/BaseCovering';
 import { BaseAccessory } from '../accessories/BaseAccessory';
 import { BaseBeing } from '../beings/BaseBeing';
 
-export class BaseBodyPart extends BaseMaterial {
+export class BaseBodyPart extends Solid {
 
-  private _isPenetrable = false;
-  private _isPenetrator = false;
   private _accessories: BaseAccessory[] = [];
   private _coverings: BaseCovering[] = [];
   private _being: BaseBeing;
 
-  constructor(name: string, being: BaseBeing, colors: string[] = []) {
-    super(name, colors);
+  constructor(name: string, being: BaseBeing) {
+    super(name);
 
     this._being = being;
   }
@@ -51,24 +49,6 @@ export class BaseBodyPart extends BaseMaterial {
   //#endregion
 
   //#region accessors
-  isPenetrable(): boolean {
-    return this._isPenetrable;
-  }
-
-  setIsPenetrable(isPenetrable: boolean): this {
-    this._isPenetrable = isPenetrable;
-    return this;
-  }
-
-  isPenetrator(): boolean {
-    return this._isPenetrator;
-  }
-
-  setIsPenetrator(isPenetrator: boolean): this {
-    this._isPenetrator = isPenetrator;
-    return this;
-  }
-
   accessories(): BaseAccessory[] {
     return this._accessories;
   }

@@ -6,6 +6,7 @@ import { BasePenisContainer } from '../bodyParts/genitalia/BasePenisContainer';
 import { BaseAct } from '../acts/BaseAct';
 import { Sex } from '../acts';
 import { Penetration } from '../steps';
+import { IPenetrable } from '../materials';
 
 export class BaseBeing extends SuperBase {
 
@@ -24,7 +25,7 @@ export class BaseBeing extends SuperBase {
   }
 
   //#region act functions
-  penetrate(hole: BaseBodyPart): this {
+  penetrate(hole: BaseBodyPart & IPenetrable): this {
     const penetration = new Penetration();
     this.setCurrentPenetration(penetration);
 

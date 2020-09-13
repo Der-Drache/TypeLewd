@@ -1,15 +1,14 @@
 import { BaseBodyPart } from './BaseBodyPart';
 import { Claw } from './Claw';
 import { BaseBeing } from '../beings/BaseBeing';
+import { IPenetrator } from '../materials';
 
-export class BasePaw extends BaseBodyPart {
+export class BasePaw extends BaseBodyPart implements IPenetrator {
 
   private _claws: Claw[] = [];
 
   constructor(name: string, being?: BaseBeing) {
     super(name, being);
-
-    this.isPenetrator();
   }
 
   //#region contextual accessors

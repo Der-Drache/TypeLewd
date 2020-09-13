@@ -6,5 +6,5 @@ export const bondageAccessories: IBondageData[] = [
     penetrable: false,
     penetrator: true,
     tiesMultipleParts: false,
-  }
-]
+  },
+];
