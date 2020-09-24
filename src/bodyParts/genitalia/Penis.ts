@@ -2,7 +2,7 @@ import { BaseBodyPart } from '../BaseBodyPart';
 import { Cum } from '../../liquids';
 import { PenisType } from '../../data';
 import { BaseBeing } from '../../beings/BaseBeing';
-import { IPenetrator, PenisLike, IPenisLike } from '../../materials';
+import { PenisLike, IPenisLike } from '../../materials';
 
 export class Penis extends BaseBodyPart implements IPenisLike {
 

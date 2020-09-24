@@ -1,6 +1,6 @@
 import { roundToPlaces } from '.';
 
-interface Point {
+export interface IPoint {
   x: number;
   y: number;
 }
@@ -11,7 +11,7 @@ const calculateLinearBezierPoint = ([p0, p1]: number[], t: number): number => {
   return (1 - t) * p0 + t * p1;
 }
 
-const linearBezierPoint = ([p0, p1]: Point[], t: number): Point => {
+const linearBezierPoint = ([p0, p1]: IPoint[], t: number): IPoint => {
   return {
     x: calculateLinearBezierPoint([p0.x, p1.x], t),
     y: calculateLinearBezierPoint([p0.y, p1.y], t),
@@ -26,7 +26,7 @@ const calculateQuadraticBezierPoint = ([p0, p1, p2]: number[], t: number): numbe
   t * t * p2;
 }
 
-const quadraticBezierPoint = ([p0, p1, p2]: Point[], t: number): Point => {
+const quadraticBezierPoint = ([p0, p1, p2]: IPoint[], t: number): IPoint => {
   return {
     x: calculateQuadraticBezierPoint([p0.x, p1.x, p2.x], t),
     y: calculateQuadraticBezierPoint([p0.y, p1.y, p2.y], t),
@@ -42,7 +42,7 @@ const calculateCubicBezierPoint = ([p0, p1, p2, p3]: number[], t: number): numbe
     t * t * t * p3;
 }
 
-export const cubicBezierPoint = ([p0, p1, p2, p3]: Point[], t: number): Point => {
+export const cubicBezierPoint = ([p0, p1, p2, p3]: IPoint[], t: number): IPoint => {
   return {
     x: calculateCubicBezierPoint([p0.x, p1.x, p2.x, p3.x], t),
     y: calculateCubicBezierPoint([p0.y, p1.y, p2.y, p3.y], t),
@@ -54,7 +54,7 @@ export const cubicBezierPoint = ([p0, p1, p2, p3]: Point[], t: number): Point =>
 /**
  * recursive
  */
-const calculateBezierPoint = (points: number[], t: number): number => {
+export const calculateBezierPoint = (points: number[], t: number): number => {
   if (points.length === 1) {
     return points[0];
   }
@@ -67,16 +67,16 @@ const calculateBezierPoint = (points: number[], t: number): number => {
 /**
  * recursive
  */
-export const bezierPoint = (points: Point[], t: number): Point => {
+export const bezierPoint = (points: IPoint[], t: number): IPoint => {
   return {
     x: calculateBezierPoint(points.map(p => p.x), t),
     y: calculateBezierPoint(points.map(p => p.y), t),
   };
 }
 
-export const bezier = (...points: Point[]): Point[] => {
-  const bezier: Point[] = [];
-  let bezierCalculator: (points: Point[], t: number) => Point;
+export const bezier = (...points: IPoint[]): IPoint[] => {
+  const bezier: IPoint[] = [];
+  let bezierCalculator: (points: IPoint[], t: number) => IPoint;
 
   switch (points.length) {
     case 2:

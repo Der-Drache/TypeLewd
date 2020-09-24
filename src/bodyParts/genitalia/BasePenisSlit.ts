@@ -3,6 +3,8 @@ import { BaseSlit } from './BaseSlit';
 import { BasePenisContainer } from './BasePenisContainer';
 import { BaseBeing } from '../../beings/BaseBeing';
 import { IPenetrable, IPenetrator } from '../../materials';
+import { Penetration } from '../../materials/_Penetration';
+import { IPoint } from '../../utils';
 
 export class BasePenisSlit extends BasePenisContainer implements IPenetrable {
 
@@ -36,6 +38,11 @@ export class BasePenisSlit extends BasePenisContainer implements IPenetrable {
     return this;
   }
 
+  pushPenetration(penetration: Penetration): this {
+    this.slit.pushPenetration(penetration);
+    return this;
+  }
+
   penetrators(): IPenetrator[] {
     return this.slit.penetrators();
   }
@@ -53,5 +60,28 @@ export class BasePenisSlit extends BasePenisContainer implements IPenetrable {
     this.slit.setLiquids(liquids);
     return this;
   }
+
+  penetrations(): Penetration[] {
+    return this.slit.penetrations();
+  }
+
+  setPenetrations(penetrations: Penetration[]): this {
+    this.slit.setPenetrations(penetrations);
+    return this;
+  }
+
+  //#region processing
+  lastPenetration(): Penetration {
+    return this.slit.lastPenetration();
+  }
+
+  lastFinishedPenetration(): Penetration {
+    return this.slit.lastFinishedPenetration();
+  }
+
+  getStretchedSizes(): IPoint[] {
+    return this.slit.getStretchedSizes();
+  }
+  //#endregion
   //#endregion
 }

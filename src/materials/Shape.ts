@@ -2,14 +2,14 @@ import { Size } from './Size';
 
 export class Shape {
 
-  private _width: Size;
-  private _height: Size;
-  private _length: Size;
+  private _x: Size;
+  private _y: Size;
+  private _z: Size;
 
-  constructor(width?: number | Size, height?: number | Size, length?: number | Size) {
-    this.setWidth(width);
-    this.setHeight(height);
-    this.setLength(length);
+  constructor(x?: number | Size, y?: number | Size, z?: number | Size) {
+    this.setX(x);
+    this.setY(y);
+    this.setZ(z);
   }
 
   //#region processing
@@ -23,9 +23,9 @@ export class Shape {
 
   isSmallerThan(shape: Shape): boolean {
     return (
-      this.width().centimeters() < shape.width().centimeters() &&
-      this.height().centimeters() < shape.height().centimeters() &&
-      this.length().centimeters() < shape.length().centimeters()
+      this.x().centimeters() < shape.x().centimeters() &&
+      this.y().centimeters() < shape.y().centimeters() &&
+      this.z().centimeters() < shape.z().centimeters()
     );
   }
 
@@ -39,30 +39,30 @@ export class Shape {
   //#endregion
 
   //#region accessors
-  width(): Size {
-    return this._width;
+  x(): Size {
+    return this._x;
   }
 
-  setWidth(width: number | Size): this {
-    this._width = this.getSize(width);
+  setX(x: number | Size): this {
+    this._x = this.getSize(x);
     return this;
   }
 
-  height(): Size {
-    return this._height;
+  y(): Size {
+    return this._y;
   }
 
-  setHeight(height: number | Size): this {
-    this._height = this.getSize(height);
+  setY(y: number | Size): this {
+    this._y = this.getSize(y);
     return this;
   }
 
-  length(): Size {
-    return this._length;
+  z(): Size {
+    return this._z;
   }
 
-  setLength(length: number | Size): this {
-    this._length = this.getSize(length);
+  setZ(z: number | Size): this {
+    this._z = this.getSize(z);
     return this;
   }
   //#endregion

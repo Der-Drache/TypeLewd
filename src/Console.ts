@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import { Chalk } from 'chalk';
 import * as util from 'util';
 
@@ -99,6 +99,11 @@ export class Console {
       }
     }
 
+    return Console;
+  }
+
+  static clear(): typeof Console {
+    Console.queue.addAndProcess(() => Promise.resolve(console.clear()));
     return Console;
   }
 

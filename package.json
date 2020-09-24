@@ -4,9 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "tsc",
-    "start-watch": "nodemon dist --enable-source-maps",
-    "compile-watch": "tsc --watch"
+    "start": "nodemon dist --enable-source-maps",
+    "compile": "tsc --watch"
   },
   "author": "",
   "license": "ISC",

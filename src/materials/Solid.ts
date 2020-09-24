@@ -1,12 +1,14 @@
 import { Shape } from '.';
 import { BaseMaterial } from './BaseMaterial';
+import { IPoint, calculateBezierPoint } from '../utils';
 
 export class Solid extends BaseMaterial {
 
-  private _minSize: Shape;
   private _originalSize: Shape;
+  private _currentSize: Shape;
   private _maxSize: Shape;
   private _stretchiness = 0;
+  private bezierCurvePoints: IPoint[] = [];
 
   constructor(name: string) {
     super(name);
@@ -18,18 +20,23 @@ export class Solid extends BaseMaterial {
   }
 
   setSize(shape: Shape): this {
-    this._minSize = this._originalSize = this._maxSize = shape;
+    this._currentSize = this._originalSize = this._maxSize = shape;
     return this;
   }
   //#endregion
 
   //#region accessors
-  minSize(): Shape {
-    return this._minSize;
+  currentSize(): Shape {
+    return this._currentSize;
   }
 
-  setMinSize(minSize: Shape): this {
-    this._minSize = minSize;
+  setCurrentSize(currentSize: Shape): this {
+    this._currentSize = currentSize;
+
+    if (!this.originalSize()) {
+      this.setOriginalSize(currentSize);
+    }
+
     return this;
   }
 
@@ -39,6 +46,11 @@ export class Solid extends BaseMaterial {
 
   setOriginalSize(originalSize: Shape): this {
     this._originalSize = originalSize;
+
+    if (!this.currentSize()) {
+      this.setCurrentSize(originalSize);
+    }
+
     return this;
   }
 

@@ -1,6 +1,8 @@
 import { BaseBodyPart } from '../BaseBodyPart';
 import { BaseBeing } from '../../beings/BaseBeing';
 import { IPenetrable, Penetrable, IPenetrator } from '../../materials';
+import { Penetration } from '../../materials/_Penetration';
+import { IPoint } from '../../utils';
 
 export class Tailhole extends BaseBodyPart implements IPenetrable {
 
@@ -21,6 +23,11 @@ export class Tailhole extends BaseBodyPart implements IPenetrable {
     return this;
   }
 
+  pushPenetration(penetration: Penetration): this {
+    this.penetrable.pushPenetration(penetration);
+    return this;
+  }
+
   penetrators(): IPenetrator[] {
     return this.penetrable.penetrators();
   }
@@ -38,5 +45,28 @@ export class Tailhole extends BaseBodyPart implements IPenetrable {
     this.penetrable.setLiquids(liquids);
     return this;
   }
+
+  penetrations(): Penetration[] {
+    return this.penetrable.penetrations();
+  }
+
+  setPenetrations(penetrations: Penetration[]): this {
+    this.penetrable.setPenetrations(penetrations);
+    return this;
+  }
+
+  //#region processing
+  lastPenetration(): Penetration {
+    return this.penetrable.lastPenetration();
+  }
+
+  lastFinishedPenetration(): Penetration {
+    return this.penetrable.lastFinishedPenetration();
+  }
+
+  getStretchedSizes(): IPoint[] {
+    return this.penetrable.getStretchedSizes();
+  }
+  //#endregion
   //#endregion
 }
